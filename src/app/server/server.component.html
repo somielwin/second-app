@@ -1,0 +1,22 @@
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+<!-- Two Way Binding -->
+<input type="text" class="form-control" [(ngModel)]="serverName">
+<p>{{ serverName }}</p>
+
+<p *ngFor="let server of serverList" [ngClass]="{'online-sample' : serverStatus === 'online'}" class="sample-text">
+  Hello server # {{ serverId}} is currently <span [ngStyle]="{color: getColor() }">{{ serverStatus }}</span>
+  <!-- String interpolation / Event Binding -->
+  
+</p>
+
+<button 
+  class="btn btn-primary" 
+  [disabled]="!allowServer" 
+  (click)="serverCreate()"> Click me
+  </button>
+
+<p *ngIf="serverCreated; else noServer" >{{serverCreationStatus}}</p>
+<ng-template #noServer>
+  <p> No servers</p>
+</ng-template>
+
